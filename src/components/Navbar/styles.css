@@ -1,0 +1,25 @@
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.navbar{
+    font-size: 18px;
+    justify-content: space-between;
+    text-align: left;
+    
+}
+
+div img{
+    height: 60px;
+    width: 55px;
+    margin-bottom: 10px;
+}
