@@ -1,11 +1,10 @@
 import { Card, Image, Text, Group, Flex } from "@mantine/core"
 import { Link } from "react-router-dom"
-
 const Item = ({ id, nombre, descripcion, imagen, compacto = true }) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder maw={compacto ? 200 : 500}>
       <Card.Section>
-        <Image src={imagen} height={160} alt={nombre} />
+        <Image src={imagen} height={200} alt={nombre} />
       </Card.Section>
 
       <Group position="apart" mt="md" mb="xs">

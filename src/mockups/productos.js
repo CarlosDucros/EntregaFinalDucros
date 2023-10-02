@@ -1,3 +1,18 @@
+export const getProductos = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(productos)
+    }, 2000)
+  })
+}
+
+export const getProductosPorCategoria = async (categoria) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(productos.filter((prod) => prod.categoria === categoria))
+    }, 2000)
+  })
+}
 export const productos = [
   {
     id: 0,
