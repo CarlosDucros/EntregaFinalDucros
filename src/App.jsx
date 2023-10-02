@@ -1,11 +1,9 @@
 import "./App.css"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { routes } from "./routes/routes"
+import Navigation from "./routes/Navigation"
 function App() {
-  const router = createBrowserRouter(routes)
   return (
     <>
-      <RouterProvider router={router} />
+      <Navigation />
     </>
   )
 }

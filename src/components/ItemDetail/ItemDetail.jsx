@@ -1,7 +1,7 @@
-import { Card, Image, Text, Group, Flex } from "@mantine/core"
-import { Link } from "react-router-dom"
-
-const Item = ({ id, nombre, descripcion, imagen, compacto = true }) => {
+import { Card, Image, Text, Group, Button, Flex, Textarea } from "@mantine/core"
+import { useContador } from "../../hooks/useContador"
+const ItemDetail = ({ nombre, descripcion, imagen, precio, compacto = false }) => {
+  const { contador, incrementar, decrementar, resetear } = useContador()
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder maw={compacto ? 200 : 500}>
       <Card.Section>
@@ -44,15 +44,25 @@ const Item = ({ id, nombre, descripcion, imagen, compacto = true }) => {
       >
         {descripcion}
       </Text>
-      {compacto && (
-        <Flex justify="center">
-          <Link mt={10} component={Link} to={`/item/${id}`}>
-            Ver detalles
-          </Link>
-        </Flex>
-      )}
+      <Text size="xl" fw={700} ta="center">
+        {`$` + precio}
+      </Text>
+      <Text size="xl" fw={700} ta="center">
+        {contador}
+      </Text>
+      <Flex gap={10} mt={20} justify="center">
+        <Button onClick={decrementar} variant="filled">
+          -
+        </Button>
+        <Button onClick={incrementar} variant="filled">
+          +
+        </Button>
+        <Button onClick={resetear} variant="filled">
+          Añadir al carrito
+        </Button>
+      </Flex>
     </Card>
   )
 }
 
-export default Item
+export default ItemDetail

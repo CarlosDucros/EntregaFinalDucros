@@ -6,14 +6,17 @@ import {
   Container,
   Anchor,
   Indicator,
-} from "@mantine/core";
-import CartWidget from "./CartWidget/CartWidget";
-import "./styles.css";
-import Logo from '../../assets/icons/logo.png';
-import { Link } from "react-router-dom";
+} from "@mantine/core"
+import CartWidget from "./CartWidget/CartWidget"
+import "./styles.css"
+import Logo from "../../assets/icons/logo.png"
+import { Link } from "react-router-dom"
 
-
-const LogoNavbar = () => <Link to="/"><img src={Logo} alt="logo"/></Link>
+const LogoNavbar = () => (
+  <Link to="/">
+    <img src={Logo} alt="logo" />
+  </Link>
+)
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -45,33 +48,37 @@ const useStyles = createStyles((theme) => ({
   },
   logo: {
     width: 10,
-    height: 10
-  }
-}));
+    height: 10,
+  },
+}))
 
 function Navbar() {
-  const { classes, cx } = useStyles();
-
-  
+  const { classes, cx } = useStyles()
 
   return (
-    <Header className="navbar" height={56} >
+    <Header className="navbar" height={56}>
       <Container className={classes.inner}>
         <Group className={classes.links} spacing={5}>
           <ul>
             <li>
-              <Anchor component={Link} to="/">Inicio</Anchor>
+              <Anchor component={Link} to="/">
+                Inicio
+              </Anchor>
             </li>
             <li>
-              <Anchor  component={Link} to="/category/mujer">Mujer</Anchor>
+              <Anchor component={Link} to="/categoria/mujer">
+                Mujer
+              </Anchor>
             </li>
             <li>
-              <Anchor  component={Link} to="/category/hombre">Hombre</Anchor>
+              <Anchor component={Link} to="/categoria/hombre">
+                Hombre
+              </Anchor>
             </li>
           </ul>
         </Group>
 
-        <LogoNavbar className={classes.logo}  />
+        <LogoNavbar className={classes.logo} />
 
         <Group spacing={0} className={classes.cart} position="right" noWrap>
           <ActionIcon size="lg">
@@ -84,7 +91,7 @@ function Navbar() {
         </Group>
       </Container>
     </Header>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

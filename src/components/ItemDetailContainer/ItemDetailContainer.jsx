@@ -1,18 +1,25 @@
 import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { productos } from "../../mockups/productos"
-import Item from "../Item/Item"
-import { Text } from "@mantine/core"
+import ItemDetail from "../ItemDetail/ItemDetail"
+import { Flex, Loader } from "@mantine/core"
 const ItemDetailContainer = () => {
+  const [producto, setProducto] = useState()
   const { id } = useParams()
-  const buscarProducto = productos.find((producto) => producto.id === parseInt(id))
+  const [cargando, setCargando] = useState(true)
 
-  if (!buscarProducto) {
-    return <Text>No se ha encontrado el producto</Text>
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      const buscarProducto = productos.find((prod) => prod.id === parseInt(id))
+      setProducto(buscarProducto)
+      setCargando(false)
+    }, 2000)
+  })
+
   return (
-    <>
-      <Item producto={buscarProducto} compacto={false} />
-    </>
+    <Flex wrap="wrap" gap={10} justify="center" mt={30}>
+      {cargando ? <Loader color="blue" /> : <ItemDetail {...producto} compacto={false} />}
+    </Flex>
   )
 }
 

@@ -1,29 +1,69 @@
 import "./styles.css"
-import { productos } from "../../mockups/productos"
-import Item from "../Item/Item"
-import { Flex } from "@mantine/core"
+import ItemList from "../ItemList/ItemList"
+import { Flex, Loader } from "@mantine/core"
 import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 function ItemListContainer({}) {
-  const { categoryId } = useParams()
-  const productosFiltrados = categoryId
-    ? productos.filter((producto) => producto.categoria === categoryId)
-    : productos
+  const [productos, setProductos] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const { categoria } = useParams()
+
+  const getProductos = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(productos)
+      }, 2000)
+    })
+  }
+  const getProductosPorCategoria = (categoria) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(productos.filter((prod) => prod.categoria === categoria))
+      }, 2000)
+    })
+  }
+  useEffect(() => {
+    getProductos()
+      .then((response) => {
+        setProductos(response)
+        setCargando(false)
+      })
+      .catch(
+        (error) => {
+          console.error(error)
+        },
+        [productos],
+      )
+  })
+
+  useEffect(() => {
+    const mostrarProductosPorCategoria = categoria ? getProductosPorCategoria : getProductos
+    mostrarProductosPorCategoria(categoria)
+      .then((response) => {
+        setProductos(response)
+      })
+      .catch(
+        (error) => {
+          console.error(error)
+        },
+        [categoria],
+      )
+  })
+
   return (
     <>
       <h1>
-        {categoryId ? (
+        {categoria ? (
           <>
-            Categoria: <span className="capitalizado">{categoryId}</span>
+            Categoria: <span className="capitalizado">{categoria}</span>
           </>
         ) : (
           <>Productos: </>
         )}
       </h1>
       <Flex wrap="wrap" gap={10} justify="center">
-        {productosFiltrados.map((producto) => (
-          <Item producto={producto} key={producto.id} />
-        ))}
+        {cargando ? <Loader color="blue" /> : <ItemList productos={productos} />}
       </Flex>
     </>
   )
