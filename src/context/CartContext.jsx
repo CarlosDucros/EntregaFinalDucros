@@ -5,8 +5,6 @@ export const CartContext = createContext()
 
 export function CartProvider({ children }) {
   const [carrito, setCarrito] = useState([])
-  console.log(db)
-
   const postOrden = async (orden, precioTotal) => {
     const ordersCollection = collection(db, "ordenes")
     try {
