@@ -147,7 +147,6 @@ const Checkout = () => {
                 }
                 const ordenCreada = await postOrden(carrito, precioTotal)
                 setFormState("completed")
-                limpiarFormulario()
                 limpiarCarrito()
                 setOrdenId(ordenCreada.id)
               }}
