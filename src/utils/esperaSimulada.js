@@ -1,3 +1,3 @@
 export const esperaSimulada = async (tiempo) => {
-  return await new Promise((resolve) => setTimeout(() => resolve("Exito"), 0))
+  return await new Promise((resolve) => setTimeout(() => resolve("Exito"), tiempo))
 }
