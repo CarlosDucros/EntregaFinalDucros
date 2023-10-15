@@ -187,7 +187,9 @@ const Checkout = () => {
                   <div>Precio total: {precioTotal}</div>
                   <Flex gap={15}>
                     <Button onClick={open}>Pagar</Button>
-                    <Button color="gray.6">Limpiar carrito</Button>
+                    <Button onClick={limpiarCarrito} color="gray.6">
+                      Limpiar carrito
+                    </Button>
                   </Flex>
                 </Flex>
               </>
