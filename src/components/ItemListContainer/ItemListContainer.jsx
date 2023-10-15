@@ -2,24 +2,15 @@ import "./styles.css"
 import ItemList from "../ItemList/ItemList"
 import { Flex, Loader } from "@mantine/core"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { getProductos, getProductosPorCategoria } from "../../mockups/productos"
+import { useEffect } from "react"
+import { useGetProductos } from "../../hooks/useGetProductos"
+
 const ItemListContainer = () => {
-  const [productos, setProductos] = useState([])
-  const [cargando, setCargando] = useState(true)
   const { categoria } = useParams()
+  const { productos, cargando, fetchProductos } = useGetProductos()
 
   useEffect(() => {
-    setCargando(true)
-    const mostrarProductosPorCategoria = categoria ? getProductosPorCategoria : getProductos
-    mostrarProductosPorCategoria(categoria)
-      .then((response) => {
-        setProductos(response)
-        setCargando(false)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    fetchProductos(categoria)
   }, [categoria])
   return (
     <>

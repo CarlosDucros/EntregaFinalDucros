@@ -1,10 +1,14 @@
+import { MantineProvider } from "@mantine/core"
 import "./App.css"
+import { CartProvider } from "./context/CartContext"
 import Navigation from "./routes/Navigation"
 function App() {
   return (
-    <>
-      <Navigation />
-    </>
+    <MantineProvider>
+      <CartProvider>
+        <Navigation />
+      </CartProvider>
+    </MantineProvider>
   )
 }
 

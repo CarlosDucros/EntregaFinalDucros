@@ -1,13 +1,5 @@
-import {
-  createStyles,
-  Header,
-  Group,
-  ActionIcon,
-  Container,
-  Anchor,
-  Indicator,
-} from "@mantine/core"
-import CartWidget from "./CartWidget/CartWidget"
+import { createStyles, Header, Group, ActionIcon, Container, Anchor } from "@mantine/core"
+import CartWidget from "../CartWidget/CartWidget"
 import "./styles.css"
 import Logo from "../../assets/icons/logo.png"
 import { Link } from "react-router-dom"
@@ -53,7 +45,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 function Navbar() {
-  const { classes, cx } = useStyles()
+  const { classes } = useStyles()
 
   return (
     <Header className="navbar" height={56}>
@@ -83,9 +75,7 @@ function Navbar() {
         <Group spacing={0} className={classes.cart} position="right" noWrap>
           <ActionIcon size="lg">
             <Group position="center">
-              <Indicator inline label="5" size={15}>
-                <CartWidget />
-              </Indicator>
+              <CartWidget />
             </Group>
           </ActionIcon>
         </Group>

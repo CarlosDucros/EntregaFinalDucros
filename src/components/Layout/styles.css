@@ -1,0 +1,3 @@
+.content{
+min-height: calc(100vh - 174px - 4rem - 21px) /*174px es la suma de los heights del Header y el Footer. */
+}
